@@ -1,5 +1,11 @@
-import React from 'react'
-import Image from 'next/image'
+import React from "react";
+import Image from "next/image";
+import MaxWidthContainer from "./maxwidthcontainer";
+import { AuroraText } from "@/components/magicui/aurora-text";
+import { RainbowButton } from "@/components/magicui/rainbow-button";
+import { File, Mail } from "lucide-react";
+import Link from "next/link";
+
 const skills = [
   "C++",
   "C",
@@ -14,46 +20,55 @@ const skills = [
   "Next.js",
   "Node.js",
   "Express.js",
-  "MongoDB"
+  "MongoDB",
 ];
 
 function Hero() {
   return (
-    <div className='max-w-2xl mx-auto'>
-      <div className='flex flex-row mt-15 gap-15 grid grid-cols-2'>
-        <div className='flex flex-col gap-4'>
-        <div className='text-white text-4xl font-extrabold '>Hi, I'm Aditya👋</div>
-        <div className='text-[#bfbfbf] font-medium '>I'm an AI Engineer and Web Developer, transforming innovative ideas into intelligent, dynamic applications, from concept to deployment with a modern tech stack.</div>
+    <MaxWidthContainer>
+      <div className="flex mt-15 gap-15 justify-between p-5">
+        <div className="flex flex-col gap-4">
+          <div className="text-primary md:text-4xl  text-2xl font-semibold">
+            Hi, I'm{" "}
+            <AuroraText colors={["green", "yellow"]} className="font-bold">
+              Aditya
+            </AuroraText>
+            👋
+          </div>
+          <div className="text-primary font-medium ">
+            I'm an AI Engineer and Web Developer, transforming innovative ideas
+            into intelligent, dynamic applications, from concept to deployment
+            with a modern tech stack.
+          </div>
+          <div className="flex gap-2">
+            <Link href="/" target="_blank">
+              <RainbowButton>
+                <File />
+                Resume
+              </RainbowButton>
+            </Link>
+            <Link href="mailto:adityarajwk@gmail.com" target="_blank">
+              <RainbowButton variant={'outline'}>
+                <Mail/>
+                Contact
+              </RainbowButton>
+            </Link>
+          </div>
         </div>
         <div>
           <div className="hidden w-full md:block">
-                <Image 
-                    src={"/profile.jpeg"} 
-                    height={200} 
-                    width={200} 
-                    alt="anurag's image" 
-                    className="rounded-full border shadow-xl"
-                />
-            </div></div>
-       </div> 
-       <div className='flex flex-col'>
-        <div className='text-white font-bold item-center mr-82 mt-5'>Skills</div>
-        <div className='flex flex-wrap gap-2 mt-2 w-94'>
-         {skills.map((skill,i) => (<div key={i} className='bg-white text-black rounded-xl px-4 hover:bg-[#d4d4d4]'>{skill}</div>
-        ))}
+            <Image
+              src={"/profile.png"}
+              height={500}
+              width={500}
+              alt="aditya's image"
+              className=" shadow-xl"
+            />
+          </div>
         </div>
-       </div>
-       <div className='text-white font-bold item-center mr-82 mt-5'>Education</div>
-       <div className='flex mt-2 gap-4'>
-        <div className='bg-g rounded-full w-12 h-12 text-center pt-0.5 text-3xl border-2 border-dashed border-black text-white'>L</div>
-        <div className='text-white'>
-        <div className='font-bold'>Lovely Professional University</div>
-        <div className='font-light'>Bachelor of Technology in Computer Science and Engineering AI/ML</div>
-        </div>
-        <div className='text-g pb-8'>2023-2027</div>
-       </div>
-    </div>
-  )
+      </div>
+    </MaxWidthContainer>
+  );
 }
 
-export default Hero
+export default Hero;
