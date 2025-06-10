@@ -19,7 +19,7 @@ export default function ProofOfWork() {
   const displayedProjects = showAll ? Projects : Projects.slice(0, 4);
   
   return (
-    <MaxWidthContainer className="mt-8 flex flex-col items-center">
+    <MaxWidthContainer className="mt-8 flex flex-col items-center p-2">
       <h1 className={`${font.className} font-semibold text-3xl`}>Proof Of Work </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-5 mt-2 p-2 hover:cursor-default">
         {displayedProjects.map((e, index) => {

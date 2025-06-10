@@ -30,7 +30,7 @@ function Hero() {
         <div className="flex flex-col gap-4">
           <div className="text-primary md:text-4xl  text-2xl font-semibold">
             Hi, I'm{" "}
-            <AuroraText colors={["green", "yellow"]} className="font-bold">
+            <AuroraText colors={["green", "orange"]} className="font-bold">
               Aditya
             </AuroraText>
             👋
@@ -41,10 +41,10 @@ function Hero() {
             with a modern tech stack.
           </div>
           <div className="flex gap-2">
-            <Link href="/" target="_blank">
+            <Link href="https://drive.google.com/file/d/1BxyVSgpDgKb3_AVxfEpl44qabg0ma5U-/view?usp=sharing" target="_blank">
               <RainbowButton>
                 <File />
-                Resume
+                My Resume
               </RainbowButton>
             </Link>
             <Link href="mailto:adityarajwk@gmail.com" target="_blank">

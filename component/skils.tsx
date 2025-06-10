@@ -19,7 +19,7 @@ const skills = [
 
 const Skill = () => {
   return (
-    <div>
+    <div className="p-2">
       <div className="flex flex-col">
         <div className="text-primary font-bold item-center mr-82 mt-20">
           Skills
