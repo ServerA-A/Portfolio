@@ -3,8 +3,9 @@
 body{
   background-color:#131313;
 }
-@theme{
+.dark{
  --color-bco : #131313;;
  --color-hv : #212121;
+ --color-g : #6b6868;
  --font-edu :  "Edu", cursive;
 }
