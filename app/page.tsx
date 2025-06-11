@@ -1,8 +1,8 @@
-import { DockDemo } from "@/component/dock";
-import Hero from "@/component/hero";
-import MaxWidthContainer from "@/component/maxwidthcontainer";
-import ProofOfWork from "@/component/proofofwork";
-import Skill from "@/component/skils";
+import { DockDemo } from "@/app/component/dock";
+import Hero from "@/app/component/hero";
+import MaxWidthContainer from "@/app/component/maxwidthcontainer";
+import ProofOfWork from "@/app/component/proofofwork";
+import Skill from "@/app/component/skils";
 
 export default function Home() {
   return (

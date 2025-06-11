@@ -59,10 +59,10 @@ function Hero() {
           <div className="hidden w-full md:block">
             <Image
               src={"/profile.png"}
-              height={500}
-              width={500}
+              height={400}
+              width={400}
               alt="aditya's image"
-              className=" shadow-xl"
+              className="rounded-full border shadow-xl hover:scale-105 transition-all duration-300 ease-in-out dark:bg-transparent bg-[#212121]" 
             />
           </div>
         </div>

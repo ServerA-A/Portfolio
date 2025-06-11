@@ -28,7 +28,7 @@ const Skill = () => {
           {skills.map((skill, i) => (
             <div
               key={i}
-              className="bg-primary dark:text-black text-white rounded-xl px-4 hover:bg-[#d4d4d4]"
+              className="bg-primary dark:text-black text-white rounded-xl px-4 dark:hover:bg-[#d4d4d4] hover:bg-[#262626]"
             >
               {skill}
             </div>

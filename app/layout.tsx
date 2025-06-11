@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/component/navbar";
+import Navbar from "@/app/component/navbar";
 import {Poppins} from "next/font/google";
-import { ThemeProvider } from "@/component/theme-provider"
+import { ThemeProvider } from "@/app/component/theme-provider"
 
 const font = Poppins({
   subsets: ['latin'],
@@ -11,7 +11,7 @@ const font = Poppins({
   ]
 })
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: "Aditya Raj | Portfolio",
   description: "Portfolio",
 };
 
