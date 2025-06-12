@@ -36,7 +36,7 @@ export function DockDemo() {
       <div className="">
         <Dock iconMagnification={60} iconDistance={100}>
           <DockIcon className="bg-black/10 dark:bg-white/10">
-            <a href="https://x.com/adityxd" target="_blank" rel="noopener noreferrer" className="bg-black">
+            <a href="https://x.com/adityxd" target="_blank" rel="noopener noreferrer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="14"
