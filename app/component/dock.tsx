@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { File, Linkedin, Mail } from "lucide-react";
+import { Linkedin } from "lucide-react";
 import { Dock, DockIcon } from "@/components/magicui/dock";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;

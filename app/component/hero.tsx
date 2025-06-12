@@ -6,23 +6,6 @@ import { RainbowButton } from "@/components/magicui/rainbow-button";
 import { File, Mail } from "lucide-react";
 import Link from "next/link";
 
-const skills = [
-  "C++",
-  "C",
-  "Python",
-  "Java",
-  "HTML",
-  "CSS",
-  "Tailwind CSS",
-  "JavaScript",
-  "TypeScript",
-  "React JS",
-  "Next.js",
-  "Node.js",
-  "Express.js",
-  "MongoDB",
-];
-
 function Hero() {
   return (
     <MaxWidthContainer>
