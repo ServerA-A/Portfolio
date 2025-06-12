@@ -12,14 +12,14 @@ function Hero() {
       <div className="flex mt-15 gap-15 justify-between p-5">
         <div className="flex flex-col gap-4">
           <div className="text-primary md:text-4xl  text-2xl font-semibold">
-            Hi, I'm{" "}
+            Hi, I&apos;m{" "}
             <AuroraText colors={["green", "orange"]} className="font-bold">
               Aditya
             </AuroraText>
             👋
           </div>
           <div className="text-primary font-medium ">
-            I'm an AI Engineer and Web Developer, transforming innovative ideas
+            I&apos;m an AI Engineer and Web Developer, transforming innovative ideas
             into intelligent, dynamic applications, from concept to deployment
             with a modern tech stack.
           </div>
@@ -44,7 +44,7 @@ function Hero() {
               src={"/profile.png"}
               height={400}
               width={400}
-              alt="aditya's image"
+              alt="aditya&apos;s image"
               className="rounded-full border shadow-xl hover:scale-105 transition-all duration-300 ease-in-out dark:bg-transparent bg-[#212121]" 
             />
           </div>
