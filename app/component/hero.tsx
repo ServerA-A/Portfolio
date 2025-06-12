@@ -44,7 +44,7 @@ function Hero() {
               src={"/profile.png"}
               height={400}
               width={400}
-              alt="aditya&apos;s image"
+              alt="aditya_image"
               className="rounded-full border shadow-xl hover:scale-105 transition-all duration-300 ease-in-out dark:bg-transparent bg-[#212121]" 
             />
           </div>
