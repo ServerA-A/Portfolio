@@ -11,8 +11,8 @@ const font = Poppins({
   ]
 })
 export const metadata: Metadata = {
-  title: "Aditya Raj | Portfolio",
-  description: "Portfolio",
+  title: "Aditya Raj",
+  description: "FullStack Developer | AI Engineer",
 };
 
 export default function RootLayout({
