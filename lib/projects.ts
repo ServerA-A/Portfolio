@@ -1,5 +1,23 @@
 export const Projects: Projects[] = [
   {
+    title: "Roastumé",
+    description:
+      "Roastumé is your brutally honest AI résumé reviewer. Upload your résumé, get real-time feedback, and chat with an AI that tells you what hiring managers really think — no sugarcoating. Built with Next.js, Tailwind CSS, and powered by Google's Gemini API.",
+    image: "/img6.png",
+    techUsed: [
+      "Next.js 14",
+  "React",
+  "Tailwind CSS",
+  "shadcn/ui",
+  "TypeScript",
+  "Google Gemini API",
+  "tw-animate-css",
+  "PostCSS"
+    ],
+    liveLink: "https://roastume.vercel.app/",
+    githubLink: "https://github.com/adityyaraj/Roastume",
+  },
+  {
     title: "VoxBridge",
     description:
       "VoxBridge is a peer-to-peer voice chat app built with React, WebRTC, and WebSockets. Users can join or create groups via unique codes for real-time browser-to-browser audio communication.",
@@ -13,7 +31,7 @@ export const Projects: Projects[] = [
       "Lucide React",
     ],
     liveLink: "https://vox-bridge-three.vercel.app/",
-    githubLink: "https://github.com/adityyaraj/VoxBridge.git",
+    githubLink: "https://github.com/adityyaraj/VoxBridge",
   },
   {
     title: "BlockFace ",
@@ -31,7 +49,7 @@ export const Projects: Projects[] = [
       "Node.js",
     ],
     liveLink: "https://blockface.vercel.app/",
-    githubLink: "https://github.com/adityyaraj/BlockFace.git",
+    githubLink: "https://github.com/adityyaraj/BlockFace",
   },
   {
     title: "Track-DQN",
@@ -45,8 +63,8 @@ export const Projects: Projects[] = [
       "Neural Networks",
       "Procedural Generation",
     ],
-    liveLink: "https://github.com/adityyaraj/Track-DQN.git",
-    githubLink: "https://github.com/adityyaraj/Track-DQN.git",
+    liveLink: "https://github.com/adityyaraj/Track-DQN",
+    githubLink: "https://github.com/adityyaraj/Track-DQN",
   },
   {
     title: "Snake-DQN",
@@ -59,8 +77,8 @@ export const Projects: Projects[] = [
       "Deep Q-Learning (DQN)",
       "Reinforcement Learning",
     ],
-    liveLink: "https://github.com/adityyaraj/Snake-DQN.git",
-    githubLink: "https://github.com/adityyaraj/Snake-DQN.git",
+    liveLink: "https://github.com/adityyaraj/Snake-DQN",
+    githubLink: "https://github.com/adityyaraj/Snake-DQN",
   },
   {
     title: "LinkScraper ",
@@ -74,7 +92,7 @@ export const Projects: Projects[] = [
   "CSS"
     ],
     liveLink: "https://linkscraper-weld.vercel.app/",
-    githubLink: "https://github.com/adityyaraj/LinkScraper.git",
+    githubLink: "https://github.com/adityyaraj/LinkScraper",
   },
 ];
 
