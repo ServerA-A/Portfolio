@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/app/component/navbar";
 import {Poppins} from "next/font/google";
 import { ThemeProvider } from "@/app/component/theme-provider"
-
+import { Analytics } from "@vercel/analytics/next"
 const font = Poppins({
   subsets: ['latin'],
   weight: [
@@ -31,6 +31,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <Analytics/>
         <Navbar/>
         <main>
         {children}
