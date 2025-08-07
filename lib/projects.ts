@@ -7,7 +7,6 @@ export const Projects: Projects[] = [
     techUsed: [
   "React",
   "Tailwind CSS",
-  "shadcn/ui",
   "TypeScript",
   "Web Socket"
     ],
