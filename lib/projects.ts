@@ -1,5 +1,20 @@
 export const Projects: Projects[] = [
   {
+    title: "ChatIdfy",
+    description:
+      "A real-time chat application built with React, TypeScript, and WebSocket technology. ChatIdfy allows users to create or join chat rooms and communicate in real-time.",
+    image: "/img7.png",
+    techUsed: [
+  "React",
+  "Tailwind CSS",
+  "shadcn/ui",
+  "TypeScript",
+  "Web Socket"
+    ],
+    liveLink: "https://chatidfy.adityya.dev/",
+    githubLink: "https://github.com/adityyaraj/ChatIdfy",
+  },
+  {
     title: "Roastumé",
     description:
       "Roastumé is your brutally honest AI résumé reviewer. Upload your résumé, get real-time feedback, and chat with an AI that tells you what hiring managers really think — no sugarcoating. Built with Next.js, Tailwind CSS, and powered by Google's Gemini API.",
