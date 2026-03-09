@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { Linkedin, Github, User, FolderOpen, Twitter, Globe, FileText, Wifi, BatteryMedium } from 'lucide-react'
+import { Linkedin, Github, User, FolderOpen, Twitter, Globe, FileText, Wifi, BatteryMedium, Signal } from 'lucide-react'
 import Image from 'next/image'
 import About from './about'
 import ProofOfWork from './proofofwork'
@@ -97,6 +97,64 @@ const ClockWidget = () => {
   )
 }
 
+// ─── Android Status Clock ───────────────────────────────────────────────────
+const AndroidStatusClock = () => {
+  const [time, setTime] = React.useState<Date | null>(null)
+  React.useEffect(() => {
+    setTime(new Date())
+    const t = setInterval(() => setTime(new Date()), 1000)
+    return () => clearInterval(t)
+  }, [])
+  if (!time) return <div className='w-10 h-4' />
+  return (
+    <span className='text-white text-sm font-semibold select-none'>
+      {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+    </span>
+  )
+}
+
+// ─── Android Home Clock ───────────────────────────────────────────────────────
+const AndroidHomeClock = () => {
+  const [time, setTime] = React.useState<Date | null>(null)
+  React.useEffect(() => {
+    setTime(new Date())
+    const t = setInterval(() => setTime(new Date()), 1000)
+    return () => clearInterval(t)
+  }, [])
+  if (!time) return <div className='w-48 h-24' />
+  return (
+    <div className='select-none'>
+      <div className='text-[72px] font-extralight text-white leading-none tracking-tight drop-shadow-lg'>
+        {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+      </div>
+      <div className='text-base text-white/65 mt-2 font-light drop-shadow'>
+        {time.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' })}
+      </div>
+    </div>
+  )
+}
+
+// ─── Android App Icon ─────────────────────────────────────────────────────────
+const AndroidAppIcon = ({
+  children,
+  label,
+  onClick,
+}: {
+  children: React.ReactNode
+  label: string
+  onClick: () => void
+}) => (
+  <button
+    onClick={onClick}
+    className='flex flex-col items-center gap-2 active:scale-90 transition-transform duration-100'
+  >
+    {children}
+    <span className='text-white text-[10px] font-medium text-center drop-shadow-md leading-tight max-w-[64px] truncate'>
+      {label}
+    </span>
+  </button>
+)
+
 // ─── Resume Window ───────────────────────────────────────────────────────────
 const ResumeWindow = ({ close }: { close: () => void }) => (
   <div className='absolute inset-0 flex items-center justify-center z-50'>
@@ -161,20 +219,19 @@ const Desktop = () => {
   return (
     <div className='h-screen w-full overflow-hidden relative select-none'>
 
-      {/* ── Background ── */}
+      {/* ── Background (shared) ── */}
       <div className="absolute inset-0 bg-[url('/bg.jpg')] bg-cover bg-center" />
-      {/* subtle dark vignette so desktop icons are always readable */}
       <div className='absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/60 pointer-events-none' />
 
+      {/* ════════════ DESKTOP LAYOUT (md+) ════════════ */}
+
       {/* ── Menu Bar (top) ── */}
-      <div className='absolute top-0 left-0 right-0 h-8 flex items-center justify-between px-4 z-20'
+      <div className='hidden md:flex absolute top-0 left-0 right-0 h-8 items-center justify-between px-4 z-20'
         style={{ background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(30px) saturate(180%)' }}>
-        {/* Left: app name */}
         <div className='flex items-center gap-4'>
           <span className='text-white text-xs font-semibold tracking-wide'>Aditya Raj</span>
           <span className='text-white/40 text-xs'>Portfolio</span>
         </div>
-        {/* Right: status icons + clock */}
         <div className='flex items-center gap-3'>
           <Wifi className='w-3.5 h-3.5 text-white/70' />
           <BatteryMedium className='w-4 h-4 text-white/70' />
@@ -183,7 +240,7 @@ const Desktop = () => {
       </div>
 
       {/* ── Left-side desktop icons ── */}
-      <div className='absolute top-12 left-4 z-10 flex gap-2 items-start'>
+      <div className='hidden md:flex absolute top-12 left-4 z-10 gap-2 items-start'>
 
         {/* Column 1 — App shortcuts */}
         <div className='flex flex-col gap-1'>
@@ -256,19 +313,13 @@ const Desktop = () => {
 
       </div>
 
-      {/* ── Windows ── */}
-      {win.about       && <About           close={() => close('about')} />}
-      {win.proofofwork && <ProofOfWork     close={() => close('proofofwork')} />}
-      {win.resume      && <ResumeWindow    close={() => close('resume')} />}
-      {win.project     && <ProjectBrowserWindow title={win.project} close={closeProject} />}
-
-      {/* ── Music Player (right side) ── */}
-      <div className='absolute right-4 top-12 z-10' style={{ bottom: 88 }}>  
+      {/* ── Music Player (right side, desktop only) ── */}
+      <div className='hidden md:block absolute right-4 top-12 z-10' style={{ bottom: 88 }}>
         <MusicPlayer />
       </div>
 
-      {/* ── Dock / Taskbar ── */}
-      <div className='absolute bottom-0 left-0 right-0 h-[72px] flex items-center justify-center z-20'
+      {/* ── Dock / Taskbar (desktop only) ── */}
+      <div className='hidden md:flex absolute bottom-0 left-0 right-0 h-[72px] items-center justify-center z-20'
         style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%)' }}>
 
         {/* Dock pill */}
@@ -287,7 +338,6 @@ const Desktop = () => {
             </div>
           </DockBtn>
 
-          {/* separator */}
           <div className='w-px h-8 self-center mx-1' style={{ background: 'rgba(255,255,255,0.2)' }} />
 
           <DockBtn label='LinkedIn' onClick={() => openNewTab('https://www.linkedin.com/in/adityyaraj/')}>
@@ -308,7 +358,6 @@ const Desktop = () => {
             </div>
           </DockBtn>
 
-          {/* separator */}
           <div className='w-px h-8 self-center mx-1' style={{ background: 'rgba(255,255,255,0.2)' }} />
 
           <DockBtn label='Resume' onClick={() => open('resume')} active={win.resume}>
@@ -325,10 +374,144 @@ const Desktop = () => {
           </DockBtn>
 
         </div>
+      </div>
 
-        {/* right-side spacer — clock is now in the menu bar */}
+      {/* ════════════ MOBILE ANDROID HOME SCREEN (< md) ════════════ */}
+      <div className='md:hidden absolute inset-0 flex flex-col'>
+
+        {/* Android Status Bar */}
+        <div className='flex items-center justify-between px-5 pt-3.5 pb-1.5 relative z-20'
+          style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%)' }}>
+          <AndroidStatusClock />
+          <div className='flex items-center gap-2'>
+            <Signal className='w-3.5 h-3.5 text-white' />
+            <Wifi className='w-3.5 h-3.5 text-white' />
+            <BatteryMedium className='w-4 h-4 text-white' />
+          </div>
+        </div>
+
+        {/* Home Screen — scrollable */}
+        <div className='flex-1 flex flex-col px-5 overflow-y-auto relative z-10 pb-2'>
+
+          {/* Big Clock Widget */}
+          <div className='mt-8 mb-10'>
+            <AndroidHomeClock />
+          </div>
+
+          {/* App Icon Grid */}
+          <div className='grid grid-cols-4 gap-x-3 gap-y-7'>
+            <AndroidAppIcon label='About' onClick={() => open('about')}>
+              <div className='w-14 h-14 rounded-[22px] bg-blue-500 flex items-center justify-center shadow-lg shadow-blue-500/30'>
+                <User className='w-7 h-7 text-white' />
+              </div>
+            </AndroidAppIcon>
+
+            <AndroidAppIcon label='Projects' onClick={() => open('proofofwork')}>
+              <div className='w-14 h-14 rounded-[22px] bg-amber-500 flex items-center justify-center shadow-lg shadow-amber-500/30'>
+                <FolderOpen className='w-7 h-7 text-white' />
+              </div>
+            </AndroidAppIcon>
+
+            <AndroidAppIcon label='LinkedIn' onClick={() => openNewTab('https://www.linkedin.com/in/adityyaraj/')}>
+              <div className='w-14 h-14 rounded-[22px] bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/30'>
+                <Linkedin className='w-7 h-7 text-white' />
+              </div>
+            </AndroidAppIcon>
+
+            <AndroidAppIcon label='GitHub' onClick={() => openNewTab('https://github.com/adityyaraj')}>
+              <div className='w-14 h-14 rounded-[22px] bg-gray-800 flex items-center justify-center shadow-lg shadow-black/40'>
+                <Github className='w-7 h-7 text-white' />
+              </div>
+            </AndroidAppIcon>
+
+            <AndroidAppIcon label='Twitter' onClick={() => openNewTab('https://x.com/adityyaraj')}>
+              <div className='w-14 h-14 rounded-[22px] bg-black border border-white/20 flex items-center justify-center shadow-lg shadow-black/50'>
+                <Twitter className='w-6 h-6 text-white fill-white' />
+              </div>
+            </AndroidAppIcon>
+
+            <AndroidAppIcon label='Resume' onClick={() => open('resume')}>
+              <div className='w-14 h-14 rounded-[22px] bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/30'>
+                <FileText className='w-7 h-7 text-white' />
+              </div>
+            </AndroidAppIcon>
+
+            <AndroidAppIcon label='Portfolio' onClick={openClassic}>
+              <div className='w-14 h-14 rounded-[22px] bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/30'>
+                <Globe className='w-7 h-7 text-white' />
+              </div>
+            </AndroidAppIcon>
+          </div>
+
+          {/* Section Divider */}
+          <div className='border-t border-white/10 my-7 mx-2' />
+
+          {/* Projects Section */}
+          <p className='text-white/50 text-[10px] uppercase tracking-widest mb-4'>Projects</p>
+          <div className='grid grid-cols-4 gap-x-3 gap-y-7 pb-6'>
+            {desktopProjects.map((project) => (
+              <AndroidAppIcon
+                key={project.title}
+                label={project.title.trim()}
+                onClick={() => openProject(project.title.trim())}
+              >
+                <div className='w-14 h-14 rounded-[22px] overflow-hidden border border-white/20 shadow-lg shadow-black/40'>
+                  <Image
+                    src={project.image}
+                    width={56}
+                    height={56}
+                    alt={project.title}
+                    className='w-full h-full object-cover'
+                  />
+                </div>
+              </AndroidAppIcon>
+            ))}
+          </div>
+
+        </div>
+
+        {/* Bottom Dock + Android Gesture Bar */}
+        <div className='relative z-20 flex flex-col items-center pt-3 pb-6'
+          style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0) 100%)' }}>
+          <div className='flex items-center gap-4 px-6 py-3 rounded-3xl mb-4 border shadow-2xl'
+            style={{ background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(40px) saturate(180%)', borderColor: 'rgba(255,255,255,0.18)' }}>
+
+            <button onClick={() => open('about')}
+              className={`relative w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-200 active:scale-90 shadow-lg ${win.about ? 'ring-2 ring-white/50' : ''}`}>
+              <div className='absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600' />
+              <User className='relative w-6 h-6 text-white' />
+            </button>
+
+            <button onClick={() => open('proofofwork')}
+              className={`relative w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-200 active:scale-90 shadow-lg ${win.proofofwork ? 'ring-2 ring-white/50' : ''}`}>
+              <div className='absolute inset-0 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500' />
+              <FolderOpen className='relative w-6 h-6 text-white' />
+            </button>
+
+            <button onClick={() => open('resume')}
+              className={`relative w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-200 active:scale-90 shadow-lg ${win.resume ? 'ring-2 ring-white/50' : ''}`}>
+              <div className='absolute inset-0 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600' />
+              <FileText className='relative w-6 h-6 text-white' />
+            </button>
+
+            <button onClick={openClassic}
+              className='relative w-12 h-12 rounded-2xl flex items-center justify-center transition-all duration-200 active:scale-90 shadow-lg'>
+              <div className='absolute inset-0 rounded-2xl' style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }} />
+              <Globe className='relative w-6 h-6 text-white' />
+            </button>
+
+          </div>
+          {/* Android gesture indicator */}
+          <div className='w-32 h-1 bg-white/55 rounded-full' />
+        </div>
 
       </div>
+
+      {/* ── Windows (shared overlay — works for both layouts) ── */}
+      {win.about       && <About           close={() => close('about')} />}
+      {win.proofofwork && <ProofOfWork     close={() => close('proofofwork')} />}
+      {win.resume      && <ResumeWindow    close={() => close('resume')} />}
+      {win.project     && <ProjectBrowserWindow title={win.project} close={closeProject} />}
 
     </div>
   )
