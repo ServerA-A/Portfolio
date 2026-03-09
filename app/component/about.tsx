@@ -48,7 +48,7 @@ const stats = [
 const socials = [
   { icon: <Github className='w-4 h-4' />,   href: 'https://github.com/adityyaraj',            label: 'GitHub' },
   { icon: <Linkedin className='w-4 h-4' />, href: 'https://linkedin.com/in/adityyaraj',        label: 'LinkedIn' },
-  { icon: <Twitter className='w-4 h-4' />,  href: 'https://x.com/adityyaraj',                  label: 'X' },
+  { icon: <Twitter className='w-4 h-4' />,  href: 'https://x.com/adityxd',                  label: 'X' },
   { icon: <Mail className='w-4 h-4' />,     href: 'mailto:adityarajwk@gmail.com',              label: 'Mail' },
 ]
 
