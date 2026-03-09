@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/app/component/navbar";
 import {Poppins} from "next/font/google";
 import { ThemeProvider } from "@/app/component/theme-provider"
 import { Analytics } from "@vercel/analytics/next"
@@ -32,10 +31,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <Analytics/>
-        <Navbar/>
-        <main>
         {children}
-        </main>
         </ThemeProvider>
       </body>
     </html>
