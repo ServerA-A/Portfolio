@@ -39,7 +39,7 @@ const skills = [
 ]
 
 const stats = [
-  { value: '8+', label: 'Projects' },
+  { value: '10+', label: 'Projects' },
   { value: '5+', label: 'Years Coding' },
   { value: '6+', label: 'Languages' },
   { value: '∞', label: 'Curiosity' },

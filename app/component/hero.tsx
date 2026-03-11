@@ -23,8 +23,8 @@ function Hero() {
             into intelligent, dynamic applications, from concept to deployment
             with a modern tech stack.
           </div>
-          <div className="flex gap-2">
-            <Link href="https://drive.google.com/file/d/1BxyVSgpDgKb3_AVxfEpl44qabg0ma5U-/view?usp=sharing" target="_blank">
+          <div className="flex flex-wrap gap-2">
+            <Link href="/Aditya_Raj_Resume.pdf" target="_blank">
               <RainbowButton>
                 <File />
                 My Resume
@@ -34,6 +34,11 @@ function Hero() {
               <RainbowButton variant={'outline'}>
                 <Mail/>
                 Contact
+              </RainbowButton>
+            </Link>
+            <Link href="/side">
+              <RainbowButton variant={'outline'}>
+                ✦ Portfolio v2
               </RainbowButton>
             </Link>
           </div>
