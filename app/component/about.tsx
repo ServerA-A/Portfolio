@@ -91,7 +91,7 @@ const About = ({ close }: AboutProps) => (
             />
             <div className='relative rounded-full p-0.5' style={{ background: 'linear-gradient(135deg, #6366f1, #a855f7)' }}>
               <Image
-                src='/profile.png'
+                src='/profile-pic.jpg'
                 width={112}
                 height={112}
                 alt='Aditya'

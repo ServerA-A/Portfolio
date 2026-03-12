@@ -46,11 +46,11 @@ function Hero() {
         <div>
           <div className="hidden w-full md:block">
             <Image
-              src={"/profile.png"}
+              src={"/profile-pic.jpg"}
               height={400}
               width={400}
               alt="aditya_image"
-              className="rounded-full border shadow-xl hover:scale-105 transition-all duration-300 ease-in-out dark:bg-transparent bg-[#212121]" 
+              className="rounded-full border shadow-xl hover:scale-105 transition-all duration-300 ease-in-out dark:bg-transparent bg-[#212121] object-cover aspect-square" 
             />
           </div>
         </div>
