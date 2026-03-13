@@ -1,5 +1,6 @@
 "use client"
 import { useRef, useState, useCallback } from "react"
+import Image from "next/image"
 import { motion, useInView } from "motion/react"
 import { Github, ExternalLink, Calendar } from "lucide-react"
 
@@ -8,6 +9,7 @@ const projects = [
     title: "Smart Hyperparameter Tuning",
     date: "Nov 2025",
     category: "AI / ML",
+    image: "/img4.png",
     description:
       "Automated ML hyperparameter tuning with Hyperopt and Bayesian Optimization. Improved model accuracy by 18% over baselines by systematically exploring the hyperparameter space.",
     highlights: ["18% accuracy improvement", "Bayesian search algorithms", "Visualized optimization landscape"],
@@ -22,6 +24,7 @@ const projects = [
     title: "Voice AI Game Purchase Assistant",
     date: "Jun 2025",
     category: "LLM / RAG",
+    image: "/img5.png",
     description:
       "Voice-controlled AI assistant using LangChain/LangGraph agent workflows with speech-to-text and vector search retrieval to recommend the optimal platform for purchasing games.",
     highlights: ["Speech-to-text integration", "LangGraph agent workflows", "Vector DB retrieval"],
@@ -36,6 +39,7 @@ const projects = [
     title: "BlockFace – Minecraft Skin Generator",
     date: "May 2025",
     category: "AI Web App",
+    image: "/img2.png",
     description:
       "AI web app generating unique Minecraft skins using self-attention, adaptive residual blocks, and adversarial training. Reduced skin generation time by 40% through optimized pipelines.",
     highlights: ["40% faster generation", "WGAN + self-attention", "Next.js full-stack"],
@@ -51,6 +55,7 @@ const projects = [
     title: "Track-DQN – Autonomous Navigation",
     date: "Oct 2024",
     category: "Reinforcement Learning",
+    image: "/img3.png",
     description:
       "Deep Q-Network RL agent for autonomous racetrack navigation using OpenAI Gym. Achieved 82% success rate on unseen tracks with experience replay and target networks.",
     highlights: ["82% success rate", "Experience replay", "Computer vision feature extraction"],
@@ -65,6 +70,7 @@ const projects = [
     title: "Roastumé – AI Résumé Reviewer",
     date: "2025",
     category: "AI Tool",
+    image: "/img6.png",
     description:
       "Brutally honest AI résumé reviewer powered by Google Gemini API. Upload your résumé, get real-time feedback and chat with an AI that tells you what hiring managers really think.",
     highlights: ["Gemini API powered", "Real-time streaming feedback", "Interactive chat UI"],
@@ -80,6 +86,7 @@ const projects = [
     title: "VoxBridge – P2P Voice Chat",
     date: "2024",
     category: "WebRTC",
+    image: "/img1.png",
     description:
       "Peer-to-peer voice chat app using WebRTC and WebSockets. Users join or create rooms via unique codes for real-time browser-to-browser audio communication with no server relay.",
     highlights: ["WebRTC P2P audio", "Room-based architecture", "Real-time signaling"],
@@ -138,7 +145,20 @@ export default function Projects() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.07 }}
             >
-              <TiltCard className={`relative p-5 sm:p-6 rounded-3xl bg-gradient-to-br ${project.gradient} border ${project.border} backdrop-blur-sm flex flex-col h-full`}>
+              <TiltCard className={`relative rounded-3xl bg-gradient-to-br ${project.gradient} border ${project.border} backdrop-blur-sm flex flex-col h-full overflow-hidden`}>
+                {/* Project image */}
+                <div className="relative w-full h-40 sm:h-44 shrink-0">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
+                </div>
+
+                <div className="p-5 sm:p-6 flex flex-col flex-grow">
                 {/* Header */}
                 <div className="flex items-start justify-between mb-3">
                   <span className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${project.tag}`}>{project.category}</span>
@@ -189,6 +209,7 @@ export default function Projects() {
                       <ExternalLink size={12} /> Live
                     </a>
                   )}
+                </div>
                 </div>
               </TiltCard>
             </motion.div>
