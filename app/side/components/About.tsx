@@ -2,6 +2,7 @@
 import { useRef, useEffect, useState } from "react"
 import { motion, useInView } from "motion/react"
 import { Brain, Cpu, Globe, Zap } from "lucide-react"
+import { MagicCard } from "@/components/ui/magic-card"
 
 const stats = [
   { value: 18,  suffix: "%", label: "Model accuracy boost",  icon: Brain, color: "text-indigo-400",  ring: "from-indigo-500 to-violet-500",   glow: "hover:shadow-indigo-500/20" },
@@ -60,9 +61,12 @@ export default function About() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15 }}
           >
-            <div className="relative p-6 sm:p-8 rounded-3xl border border-white/8 bg-white/[0.025] backdrop-blur-sm overflow-hidden group hover:border-indigo-500/25 transition-all duration-500">
+            <MagicCard 
+              className="relative p-6 sm:p-8 rounded-3xl border border-white/10 bg-white/[0.025] backdrop-blur-sm overflow-hidden group hover:border-indigo-500/30 transition-all duration-500"
+              gradientColor="rgba(99,102,241,0.08)"
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative space-y-4 sm:space-y-5">
+              <div className="relative z-10 space-y-4 sm:space-y-5">
                 <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
                   I&apos;m an{" "}
                   <span className="text-indigo-300 font-semibold">AI/ML Engineer</span>{" "}
@@ -84,13 +88,13 @@ export default function About() {
                 </p>
                 <div className="pt-2 flex flex-wrap gap-2">
                   {["PyTorch", "LangChain", "RAG", "Next.js", "OpenAI Gym"].map(tag => (
-                    <span key={tag} className="px-3 py-1 rounded-full text-xs bg-indigo-500/10 border border-indigo-500/20 text-indigo-300">
+                    <span key={tag} className="px-3 py-1 rounded-full text-xs bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 shadow-sm shadow-indigo-500/10">
                       {tag}
                     </span>
                   ))}
                 </div>
               </div>
-            </div>
+            </MagicCard>
           </motion.div>
 
           <motion.div
@@ -105,14 +109,21 @@ export default function About() {
                 initial={{ opacity: 0, scale: 0.85 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
-                className={`relative p-5 sm:p-6 rounded-2xl border border-white/8 bg-white/[0.025] hover:border-white/15 hover:bg-white/[0.04] hover:shadow-xl ${stat.glow} transition-all duration-300 group cursor-default overflow-hidden`}
+                className="h-full"
               >
-                <div className={`absolute -top-8 -right-8 w-24 h-24 rounded-full bg-gradient-to-br ${stat.ring} opacity-10 group-hover:opacity-20 group-hover:scale-125 transition-all duration-500`} />
-                <stat.icon className={`relative w-6 h-6 sm:w-7 sm:h-7 mb-3 ${stat.color} opacity-75 group-hover:opacity-100 transition-opacity`} />
-                <div className={`relative text-3xl sm:text-4xl font-black ${stat.color} mb-1 tabular-nums`}>
-                  <CountUp target={stat.value} suffix={stat.suffix} active={inView} />
-                </div>
-                <div className="relative text-slate-500 text-xs sm:text-sm leading-tight">{stat.label}</div>
+                <MagicCard
+                  className={`relative h-full p-5 sm:p-6 rounded-2xl border border-white/10 bg-white/[0.025] hover:border-white/20 hover:bg-white/[0.05] hover:shadow-xl ${stat.glow} transition-all duration-300 group cursor-default overflow-hidden`}
+                  gradientColor="rgba(255,255,255,0.06)"
+                >
+                  <div className={`absolute -top-8 -right-8 w-24 h-24 rounded-full bg-gradient-to-br ${stat.ring} opacity-10 group-hover:opacity-20 group-hover:scale-125 transition-all duration-500`} />
+                  <div className="relative z-10 flex flex-col items-start h-full">
+                    <stat.icon className={`relative w-6 h-6 sm:w-7 sm:h-7 mb-3 ${stat.color} opacity-75 group-hover:opacity-100 transition-opacity`} />
+                    <div className={`relative text-3xl sm:text-4xl font-black ${stat.color} mb-1 tabular-nums mt-auto`}>
+                      <CountUp target={stat.value} suffix={stat.suffix} active={inView} />
+                    </div>
+                    <div className="relative text-slate-500 text-xs sm:text-sm leading-tight">{stat.label}</div>
+                  </div>
+                </MagicCard>
               </motion.div>
             ))}
           </motion.div>

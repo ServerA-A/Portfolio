@@ -1,8 +1,11 @@
 "use client"
 import { useRef, useState, useCallback } from "react"
 import Image from "next/image"
-import { motion, useInView } from "motion/react"
+import { motion, useInView, useScroll, useTransform } from "motion/react"
 import { Github, ExternalLink, Calendar } from "lucide-react"
+
+import { MagicCard } from "@/components/ui/magic-card"
+import { BorderBeam } from "@/components/ui/border-beam"
 
 const projects = [
   {
@@ -104,19 +107,6 @@ export default function Projects() {
   const ref    = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: "-80px" })
 
-  function TiltCard({ children, className }: { children: React.ReactNode; className?: string }) {
-    const cardRef = useRef<HTMLDivElement>(null)
-    const [tilt, setTilt] = useState<React.CSSProperties>({})
-    const onMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-      const r = cardRef.current?.getBoundingClientRect(); if (!r) return
-      const x = (e.clientX - r.left) / r.width - 0.5
-      const y = (e.clientY - r.top)  / r.height - 0.5
-      setTilt({ transform: `perspective(600px) rotateY(${x*10}deg) rotateX(${-y*8}deg) scale3d(1.02,1.02,1)`, transition: "transform 0.1s ease-out" })
-    }, [])
-    const onLeave = useCallback(() => setTilt({ transform: "perspective(600px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)", transition: "transform 0.5s ease-out" }), [])
-    return <div ref={cardRef} style={tilt} onMouseMove={onMove} onMouseLeave={onLeave} className={className}>{children}</div>
-  }
-
   return (
     <section id="projects" className="py-20 sm:py-28 px-4 sm:px-6 relative">
       <div
@@ -137,83 +127,103 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {projects.map((project, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-auto">
+          {projects.map((project, i) => {
+            // Bento grid styling
+            const isLarge = i === 0 || i === 3 || i === 5;
+            const spanClass = isLarge ? "md:col-span-2" : "col-span-1";
+
+            return (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.07 }}
+              className={`h-full ${spanClass}`}
             >
-              <TiltCard className={`relative rounded-3xl bg-gradient-to-br ${project.gradient} border ${project.border} backdrop-blur-sm flex flex-col h-full overflow-hidden`}>
+              <MagicCard 
+                className={`relative rounded-3xl h-full w-full flex flex-col overflow-hidden bg-[#050508]/40 border ${project.border} cursor-pointer group`}
+                gradientColor="rgba(255,255,255,0.05)"
+              >
+                {/* Optional glow border */}
+                <BorderBeam size={200} duration={12} delay={i} colorFrom={project.dot.split('-')[1]} colorTo="transparent" className="opacity-50" />
+                
                 {/* Project image */}
-                <div className="relative w-full h-40 sm:h-44 shrink-0">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
+                <div className="relative w-full h-44 sm:h-52 shrink-0 overflow-hidden">
+                  <motion.div 
+                    className="w-full h-full"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </motion.div>
+                  <div className={`absolute inset-0 bg-gradient-to-t from-[#050508] via-[#050508]/60 to-transparent`} />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-40 mix-blend-overlay`} />
                 </div>
 
-                <div className="p-5 sm:p-6 flex flex-col flex-grow">
+                <div className="p-6 sm:p-8 flex flex-col flex-grow relative z-10 -mt-10">
                 {/* Header */}
-                <div className="flex items-start justify-between mb-3">
-                  <span className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${project.tag}`}>{project.category}</span>
-                  <div className="flex items-center gap-1 text-slate-500 text-xs">
-                    <Calendar size={11} />{project.date}
+                <div className="flex items-start justify-between mb-4">
+                  <span className={`px-3 py-1.5 rounded-full text-xs font-semibold border backdrop-blur-md ${project.tag}`}>{project.category}</span>
+                  <div className="flex items-center gap-1.5 text-slate-400 text-xs font-medium bg-black/40 px-2.5 py-1 rounded-full backdrop-blur-md">
+                    <Calendar size={12} />{project.date}
                   </div>
                 </div>
 
-                <h3 className="text-base sm:text-lg font-bold text-white mb-2 sm:mb-3 leading-snug">{project.title}</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 leading-snug group-hover:text-purple-300 transition-colors">{project.title}</h3>
 
-                <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 flex-grow">
+                <p className="text-slate-300 text-sm leading-relaxed mb-5 flex-grow line-clamp-3">
                   {project.description}
                 </p>
 
-                <div className="mb-3 sm:mb-4 space-y-1 sm:space-y-1.5">
-                  {project.highlights.map(h => (
-                    <div key={h} className="flex items-center gap-2 text-xs text-slate-300">
+                <div className="mb-5 space-y-2 hidden sm:block">
+                  {project.highlights.slice(0, 2).map((h, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-xs font-medium text-slate-300">
                       <span className={`w-1.5 h-1.5 rounded-full ${project.dot} shrink-0`} />{h}
                     </div>
                   ))}
                 </div>
 
-                <div className="flex flex-wrap gap-1 sm:gap-1.5 mb-4 sm:mb-5">
-                  {project.tech.slice(0, 4).map(t => (
-                    <span key={t} className="px-2 py-0.5 rounded-full text-xs bg-white/5 border border-white/8 text-slate-400">{t}</span>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tech.slice(0, isLarge ? 4 : 2).map(t => (
+                    <span key={t} className="px-2.5 py-1 rounded-md text-[10px] font-medium tracking-wide bg-white/5 border border-white/10 text-slate-300">{t}</span>
                   ))}
-                  {project.tech.length > 4 && (
-                    <span className="px-2 py-0.5 rounded-full text-xs bg-white/5 border border-white/8 text-slate-500">+{project.tech.length - 4}</span>
+                  {project.tech.length > (isLarge ? 4 : 2) && (
+                    <span className="px-2.5 py-1 rounded-md text-[10px] font-medium tracking-wide bg-white/5 border border-white/10 text-slate-400">+{project.tech.length - (isLarge ? 4 : 2)}</span>
                   )}
                 </div>
 
-                <div className="flex gap-2 sm:gap-3 mt-auto">
+                <div className="flex gap-3 mt-auto">
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white active:text-white border border-white/10 hover:border-white/25 px-3 py-2 sm:py-1.5 rounded-full transition-all duration-200 touch-manipulation"
+                    className="flex justify-center items-center flex-1 gap-2 text-xs font-semibold text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/25 px-4 py-2.5 rounded-xl transition-all duration-200 touch-manipulation"
                   >
-                    <Github size={12} /> GitHub
+                    <Github size={14} /> GitHub
                   </a>
                   {project.live && (
                     <a
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white active:text-white border border-white/10 hover:border-white/25 px-3 py-2 sm:py-1.5 rounded-full transition-all duration-200 touch-manipulation"
+                      className="flex justify-center items-center flex-1 gap-2 text-xs font-semibold text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/25 px-4 py-2.5 rounded-xl transition-all duration-200 touch-manipulation"
                     >
-                      <ExternalLink size={12} /> Live
+                      <ExternalLink size={14} /> Live
                     </a>
                   )}
                 </div>
                 </div>
-              </TiltCard>
+              </MagicCard>
             </motion.div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

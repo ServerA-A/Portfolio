@@ -1,9 +1,12 @@
 "use client"
 import { useEffect, useState } from "react"
-import { motion } from "motion/react"
+import { motion, useScroll, useTransform } from "motion/react"
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import { Mail, Github, Linkedin, ChevronDown, FileText } from "lucide-react"
+
+import { ShimmerButton } from "@/components/ui/shimmer-button"
+import { BorderBeam } from "@/components/ui/border-beam"
 
 const ParticleField = dynamic(() => import("./ParticleField"), { ssr: false })
 const MiniOrb = dynamic(() => import("./MiniOrb"), { ssr: false })
@@ -151,19 +154,16 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 mb-10 sm:mb-12"
+              className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-4 sm:gap-6 mb-10 sm:mb-12"
             >
-              <a
-                href="/Aditya_Raj_Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-semibold bg-gradient-to-r from-emerald-500 to-sky-500 text-white hover:opacity-90 hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/30 active:scale-95 transition-all duration-200 text-sm touch-manipulation"
-              >
-                <FileText size={17} /> View Resume
+              <a href="/Aditya_Raj_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                <ShimmerButton className="flex items-center justify-center gap-2 font-semibold text-sm h-[50px] px-8 hover:scale-105 active:scale-95 transition-all duration-200">
+                  <FileText size={17} /> View Resume
+                </ShimmerButton>
               </a>
               <a
                 href="mailto:adityarajwk@gmail.com"
-                className="flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-semibold border border-white/15 text-white hover:bg-white/5 hover:border-sky-300/40 hover:scale-105 active:scale-95 transition-all duration-200 text-sm touch-manipulation"
+                className="flex items-center justify-center gap-2 px-8 h-[50px] rounded-full font-semibold border border-white/15 text-white hover:bg-white/5 hover:border-sky-300/40 hover:scale-105 active:scale-95 transition-all duration-200 text-sm touch-manipulation"
               >
                 <Mail size={17} /> Get in Touch
               </a>
