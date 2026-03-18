@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://adityya.dev
+
+# Sitemaps
+Sitemap: https://adityya.dev/sitemap.xml

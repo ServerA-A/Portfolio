@@ -30,6 +30,8 @@ const education = [
   },
 ]
 
+import { MagicCard } from "@/components/ui/magic-card"
+
 export default function Education() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: "-80px" })
