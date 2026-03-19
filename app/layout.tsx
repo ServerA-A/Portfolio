@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import {Poppins} from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
 import { ThemeProvider } from "@/app/component/theme-provider"
 import { Analytics } from "@vercel/analytics/next"
-const font = Poppins({
+
+const font = Bricolage_Grotesque({
   subsets: ['latin'],
   weight: [
-    "100", "200", "300", "400", "500", "600", "700", "800", "900"
+    "200", "300", "400", "500", "600", "700", "800"
   ]
 })
+
 export const metadata: Metadata = {
   title: "Aditya Raj",
   description: "FullStack Developer | AI Engineer",

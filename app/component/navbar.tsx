@@ -5,25 +5,26 @@ import Link from 'next/link';
 
 function Navbar() {
   return (
-    <nav className='fixed top-0 left-0 right-0 z-50 border-b bg-background/80 backdrop-blur-sm'>
-      <div className='max-w-5xl mx-auto flex items-center justify-between px-6 h-14'>
-        <Link href='/' className='font-semibold text-base tracking-tight'>
-          <span className='text-primary/50'>Aditya</span> Raj
+    <div className='fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-2xl px-4'>
+      <nav className='flex items-center justify-between px-6 py-3 border border-primary/10 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60 rounded-full shadow-sm'>
+        <Link href='/' className='font-bold text-base tracking-tight hover:opacity-80 transition-opacity'>
+          <span className='text-primary/60'>Aditya</span> Raj
         </Link>
-        <div className='flex items-center gap-6'>
-          <Link href='/#about' className='text-sm text-muted-foreground hover:text-foreground transition-colors'>
+        <div className='flex items-center gap-5 sm:gap-6'>
+          <Link href='/' className='text-sm font-medium text-muted-foreground hover:text-primary transition-colors'>
             Me
           </Link>
-          <Link href='/#proofofwork' className='text-sm text-muted-foreground hover:text-foreground transition-colors'>
+          <Link href='/projects' className='text-sm font-medium text-muted-foreground hover:text-primary transition-colors'>
             Projects
           </Link>
-          <Link href='/blog' className='text-sm text-muted-foreground hover:text-foreground transition-colors'>
+          <Link href='/blog' className='text-sm font-medium text-muted-foreground hover:text-primary transition-colors'>
             Blogs
           </Link>
+          <div className="h-4 w-px bg-border hidden sm:block"></div>
           <ModeToggle />
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   )
 }
 

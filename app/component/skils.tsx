@@ -1,5 +1,7 @@
 import React from "react";
 import Image from "next/image";
+import { Marquee } from "@/components/ui/marquee";
+
 const skills = {
   languages: [
     "Python",
@@ -71,92 +73,42 @@ const skills = {
 };
 
 const Skill = () => {
+  const firstRow = [...skills.languages, ...skills.frameworks];
+  const secondRow = [...skills.toolsPlatforms, ...skills.aiML];
+
   return (
-    <div className="p-2">
-      <div className="flex flex-col">
-        <div className="text-primary font-bold item-center mr-82 mt-20">
-          Skills
-        </div>
-        <div className="flex flex-wrap gap-2 mt-2 md:w-155">
-          {skills.languages.map((skill, i) => (
-            <div
-              key={i}
-              className="bg-primary dark:text-black text-white rounded-xl px-4 dark:hover:bg-[#d4d4d4] hover:bg-[#262626]"
-            >
-              {skill}
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col mt-2">
-        <div className="text-primary font-bold item-center mr-82">
-          Frameworks & Libraries
-        </div>
-        <div className="flex flex-wrap gap-2 mt-2 md:w-155">
-          {skills.frameworks.map((skill, i) => (
-            <div
-              key={i}
-              className="bg-primary dark:text-black text-white rounded-xl px-4 dark:hover:bg-[#d4d4d4] hover:bg-[#262626]"
-            >
-              {skill}
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col mt-2">
-        <div className="text-primary font-bold item-center mr-82">
-          Tools & Platforms
-        </div>
-        <div className="flex flex-wrap gap-2 mt-2 md:w-155">
-          {skills.toolsPlatforms.map((skill, i) => (
-            <div
-              key={i}
-              className="bg-primary dark:text-black text-white rounded-xl px-4 dark:hover:bg-[#d4d4d4] hover:bg-[#262626]"
-            >
-              {skill}
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col mt-2">
-        <div className="text-primary font-bold item-center mr-82">
-          AI & Machine Learning
-        </div>
-        <div className="flex flex-wrap gap-2 mt-2 md:w-155">
-          {skills.aiML.map((skill, i) => (
-            <div
-              key={i}
-              className="bg-primary dark:text-black text-white rounded-xl px-4 dark:hover:bg-[#d4d4d4] hover:bg-[#262626]"
-            >
-              {skill}
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="text-primary font-bold item-center mr-82 mt-15">
-        Education
-      </div>
-      <div className="flex gap-2 mt-2">
-        <div>
-          <Image
-            src={"/lpulogo.jpg"}
-            width={50}
-            height={50}
-            alt="APS LOGO"
-            className="rounded-full"
-          />
-        </div>
-        <div className="flex justify-between w-full mb-30">
-          <div className="text-primary">
-            <div className="font-bold">Lovely Professional University</div>
-            <div className="font-primary text-xs">
-              Bachelor of Technology in Computer Science and Engineering AI/ML
-            </div>
-          </div> 
-          <h2 className="text-primary pb-8 text-s">2023-2027</h2>
-        </div>
+    <div className="p-2 px-4 w-full mt-10">
+      <div className="flex flex-col mb-4">
+        <h2 className="text-3xl font-semibold text-primary">Technical Arsenal</h2>
+        <p className="text-primary/50 text-sm mt-1">Tools, languages, and frameworks I use to build things.</p>
       </div>
       
+      <div className="relative flex flex-col items-center justify-center overflow-hidden w-full py-4">
+        <Marquee pauseOnHover style={{ "--duration": "45s" } as React.CSSProperties}>
+          {firstRow.map((skill, i) => (
+            <div
+              key={i}
+              className="px-5 py-2.5 mx-2 rounded-full border border-primary/20 bg-primary/5 text-primary/80 text-sm font-medium shadow-sm hover:bg-primary/10 hover:text-primary hover:scale-105 transition-all duration-300 cursor-default backdrop-blur-sm"
+            >
+              {skill}
+            </div>
+          ))}
+        </Marquee>
+        <Marquee reverse pauseOnHover style={{ "--duration": "45s" } as React.CSSProperties} className="mt-4">
+          {secondRow.map((skill, i) => (
+            <div
+              key={i}
+              className="px-5 py-2.5 mx-2 rounded-full border border-primary/20 bg-primary/5 text-primary/80 text-sm font-medium shadow-sm hover:bg-primary/10 hover:text-primary hover:scale-105 transition-all duration-300 cursor-default backdrop-blur-sm"
+            >
+              {skill}
+            </div>
+          ))}
+        </Marquee>
+        
+        {/* Gradients */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background dark:from-background"></div>
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background dark:from-background"></div>
+      </div>
     </div>
   );
 };
