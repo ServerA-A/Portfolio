@@ -139,21 +139,23 @@ export default function Projects() {
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.07 }}
+              whileHover={{ 
+                scale: 1.02,
+                y: -5
+              }}
               className={`h-full ${spanClass}`}
             >
               <MagicCard 
-                className={`relative rounded-3xl h-full w-full flex flex-col overflow-hidden bg-[#050508]/40 border ${project.border} cursor-pointer group`}
+                className={`relative rounded-3xl h-full w-full flex flex-col overflow-hidden bg-[#050508]/40 border ${project.border} cursor-pointer group transition-all duration-300 hover:shadow-xl hover:bg-[#050508]/60`}
                 gradientColor="rgba(255,255,255,0.05)"
               >
                 {/* Optional glow border */}
-                <BorderBeam size={200} duration={12} delay={i} colorFrom={project.dot.split('-')[1]} colorTo="transparent" className="opacity-50" />
+                <BorderBeam size={200} duration={12} delay={i} colorFrom={project.dot.split('-')[1]} colorTo="transparent" className="opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 {/* Project image */}
                 <div className="relative w-full h-44 sm:h-52 shrink-0 overflow-hidden">
                   <motion.div 
-                    className="w-full h-full"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.4 }}
+                    className="w-full h-full transition-transform duration-500 group-hover:scale-105"
                   >
                     <Image
                       src={project.image}
@@ -164,19 +166,19 @@ export default function Projects() {
                     />
                   </motion.div>
                   <div className={`absolute inset-0 bg-gradient-to-t from-[#050508] via-[#050508]/60 to-transparent`} />
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-40 mix-blend-overlay`} />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-40 mix-blend-overlay group-hover:opacity-60 transition-opacity duration-300`} />
                 </div>
 
                 <div className="p-6 sm:p-8 flex flex-col flex-grow relative z-10 -mt-10">
                 {/* Header */}
                 <div className="flex items-start justify-between mb-4">
-                  <span className={`px-3 py-1.5 rounded-full text-xs font-semibold border backdrop-blur-md ${project.tag}`}>{project.category}</span>
+                  <span className={`px-3 py-1.5 rounded-full text-xs font-semibold border backdrop-blur-md ${project.tag} transition-transform duration-300 group-hover:scale-105`}>{project.category}</span>
                   <div className="flex items-center gap-1.5 text-slate-400 text-xs font-medium bg-black/40 px-2.5 py-1 rounded-full backdrop-blur-md">
                     <Calendar size={12} />{project.date}
                   </div>
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 leading-snug group-hover:text-purple-300 transition-colors">{project.title}</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 leading-snug group-hover:text-purple-300 transition-colors duration-300">{project.title}</h3>
 
                 <p className="text-slate-300 text-sm leading-relaxed mb-5 flex-grow line-clamp-3">
                   {project.description}
@@ -192,7 +194,7 @@ export default function Projects() {
 
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tech.slice(0, isLarge ? 4 : 2).map(t => (
-                    <span key={t} className="px-2.5 py-1 rounded-md text-[10px] font-medium tracking-wide bg-white/5 border border-white/10 text-slate-300">{t}</span>
+                    <span key={t} className="px-2.5 py-1 rounded-md text-[10px] font-medium tracking-wide bg-white/5 border border-white/10 text-slate-300 transition-colors duration-300 hover:bg-white/10 hover:text-white cursor-default">{t}</span>
                   ))}
                   {project.tech.length > (isLarge ? 4 : 2) && (
                     <span className="px-2.5 py-1 rounded-md text-[10px] font-medium tracking-wide bg-white/5 border border-white/10 text-slate-400">+{project.tech.length - (isLarge ? 4 : 2)}</span>
@@ -204,7 +206,7 @@ export default function Projects() {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex justify-center items-center flex-1 gap-2 text-xs font-semibold text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/25 px-4 py-2.5 rounded-xl transition-all duration-200 touch-manipulation"
+                    className="flex justify-center items-center flex-1 gap-2 text-xs font-semibold text-white bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 px-4 py-2.5 rounded-xl transition-all duration-300 touch-manipulation hover:-translate-y-1"
                   >
                     <Github size={14} /> GitHub
                   </a>
@@ -213,7 +215,7 @@ export default function Projects() {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex justify-center items-center flex-1 gap-2 text-xs font-semibold text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/25 px-4 py-2.5 rounded-xl transition-all duration-200 touch-manipulation"
+                      className="flex justify-center items-center flex-1 gap-2 text-xs font-semibold text-white bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 px-4 py-2.5 rounded-xl transition-all duration-300 touch-manipulation hover:-translate-y-1"
                     >
                       <ExternalLink size={14} /> Live
                     </a>

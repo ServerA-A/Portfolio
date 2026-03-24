@@ -5,8 +5,8 @@ import { Stars } from "@react-three/drei"
 import * as THREE from "three"
 
 const IS_MOBILE   = typeof window !== "undefined" && window.innerWidth < 768
-const NODE_COUNT  = IS_MOBILE ? 110 : 260
-const MAX_CONNECTIONS = IS_MOBILE ? 150 : 500
+const NODE_COUNT  = IS_MOBILE ? 70 : 260
+const MAX_CONNECTIONS = IS_MOBILE ? 80 : 500
 const CONNECT_DIST = IS_MOBILE ? 2.8 : 3.2
 
 /* ─── Neural nodes + live connection lines ───────────────────── */
@@ -270,7 +270,7 @@ export default function ParticleField() {
 
   return (
     <div className="absolute inset-0 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, IS_MOBILE ? 16 : 14], fov: IS_MOBILE ? 65 : 60 }} gl={{ alpha: true, antialias: false }}>
+      <Canvas dpr={IS_MOBILE ? 1 : [1, 2]} camera={{ position: [0, 0, IS_MOBILE ? 16 : 14], fov: IS_MOBILE ? 65 : 60 }} gl={{ alpha: true, antialias: false }}>
         <ambientLight intensity={0.4} />
         <directionalLight position={[5, 8, 5]} intensity={0.6} color="#6366f1" />
         <Stars radius={90} depth={50} count={IS_MOBILE ? 2000 : 4000} factor={3} saturation={0} fade speed={0.3} />

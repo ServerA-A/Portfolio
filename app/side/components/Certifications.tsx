@@ -85,7 +85,8 @@ export default function Certifications() {
                   initial={{ opacity: 0, x: -30 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-                  className={`p-5 rounded-2xl border ${cert.border} ${cert.bg} ${cert.hover} flex items-center gap-4 transition-all duration-200`}
+                  whileHover={{ scale: 1.02 }}
+                  className={`p-5 rounded-2xl border ${cert.border} ${cert.bg} ${cert.hover} flex items-center gap-4 transition-all duration-300 cursor-default`}
                 >
                   <span className="text-2xl shrink-0">{cert.icon}</span>
                   <div className="flex-1 min-w-0">
@@ -114,7 +115,8 @@ export default function Certifications() {
               initial={{ opacity: 0, x: 30 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="p-7 rounded-3xl border border-yellow-500/20 bg-gradient-to-br from-yellow-500/8 to-orange-500/5 relative overflow-hidden group hover:border-yellow-500/40 hover:shadow-xl hover:shadow-yellow-500/10 transition-all duration-300"
+              whileHover={{ scale: 1.02 }}
+              className="p-7 rounded-3xl border border-yellow-500/20 bg-gradient-to-br from-yellow-500/8 to-orange-500/5 relative overflow-hidden group hover:border-yellow-500/40 hover:shadow-lg transition-all duration-300"
             >
               <div className="absolute -top-6 -right-6 w-28 h-28 bg-yellow-500/10 rounded-full blur-3xl group-hover:opacity-150 transition-opacity" />
               <div className="relative flex items-start gap-4">

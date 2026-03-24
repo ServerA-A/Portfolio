@@ -65,8 +65,9 @@ export default function Education() {
               key={edu.institution}
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
+              whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
-              className={`relative p-5 sm:p-8 rounded-3xl bg-gradient-to-br ${edu.gradient} border ${edu.border} hover:border-opacity-70 hover:shadow-xl transition-all duration-300 group overflow-hidden`}
+              className={`relative p-5 sm:p-8 rounded-3xl bg-gradient-to-br ${edu.gradient} border ${edu.border} hover:border-opacity-70 hover:shadow-lg transition-all duration-300 group overflow-hidden`}
             >
               {/* Decorative glow blob */}
               <div

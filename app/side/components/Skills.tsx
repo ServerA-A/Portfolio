@@ -78,11 +78,12 @@ export default function Skills() {
                 key={cat.title}
                 initial={{ opacity: 0, y: 40 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
+                whileHover={{ scale: 1.01 }}
                 transition={{ duration: 0.6, delay: i * 0.12 }}
-                className="h-full"
+                className="h-full transition-all duration-300"
               >
                 <MagicCard
-                  className={`relative flex flex-col h-full p-0 rounded-3xl bg-black/20 border ${cat.border} backdrop-blur-sm group overflow-hidden`}
+                  className={`relative flex flex-col h-full p-0 rounded-3xl bg-black/20 border ${cat.border} backdrop-blur-sm group overflow-hidden transition-all duration-300 hover:bg-black/40 hover:shadow-lg`}
                   gradientColor="rgba(255,255,255,0.05)"
                 >
                   <div className={`absolute inset-0 bg-gradient-to-br ${cat.gradient} opacity-30`} />

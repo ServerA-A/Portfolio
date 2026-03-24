@@ -9,10 +9,12 @@ import Certifications from "./components/Certifications"
 import Footer from "./components/Footer"
 import CursorGlow from "./components/CursorGlow"
 import ScrollProgress from "./components/ScrollProgress"
+import FloatingBubbles from "./components/FloatingBubbles"
 
 export default function SidePage() {
   return (
-    <main className="bg-[#050508] text-white overflow-x-hidden">
+    <main className="bg-[#050508] text-white overflow-x-hidden transition-all duration-700 ease-in-out relative">
+      <FloatingBubbles />
       <CursorGlow />
       <ScrollProgress />
       <Navbar />
